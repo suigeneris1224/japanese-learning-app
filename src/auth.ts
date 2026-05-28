@@ -1,13 +1,11 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@/lib/db";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt"
   },
+  secret: process.env.AUTH_SECRET ?? "local-dev-auth-secret-change-me",
   providers: [
     Credentials({
       name: "Guest",
@@ -20,19 +18,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return null;
         }
 
-        const existing = await prisma.user.upsert({
-          where: { email },
-          update: {},
-          create: {
-            email,
-            name: email.split("@")[0]
-          }
-        });
-
         return {
-          id: existing.id,
-          email: existing.email,
-          name: existing.name
+          id: email,
+          email,
+          name: email.split("@")[0]
         };
       }
     })
