@@ -106,7 +106,7 @@ input { font-family: var(--font); }
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid var(--border);
   padding: 0.35rem 0 calc(0.35rem + env(safe-area-inset-bottom, 0px));
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 .nav-bottom-item {
   display: flex;
@@ -542,6 +542,128 @@ input { font-family: var(--font); }
 .empty-icon { font-size: 3rem; margin-bottom: 0.75rem; }
 .empty-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.4rem; }
 .empty-desc { font-size: 0.875rem; color: var(--text-2); }
+
+/* ── Kanji feature card (home) ────────────────────── */
+.kanji-feature-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(124, 108, 252, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%);
+  border: 1px solid rgba(124, 108, 252, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 0.875rem;
+  color: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+.kanji-feature-card:hover {
+  border-color: var(--border-2);
+  box-shadow: 0 0 30px var(--primary-glow);
+  transform: translateY(-2px);
+}
+.kanji-feature-left { flex: 1; min-width: 0; }
+.kanji-feature-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
+.kanji-feature-desc { font-size: 0.83rem; color: var(--text-2); line-height: 1.5; }
+.kanji-feature-chars {
+  font-size: clamp(1.8rem, 6vw, 2.75rem);
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, rgba(255,255,255,0.5), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ── Kanji ────────────────────────────────────────── */
+.kanji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 0.65rem;
+}
+.kanji-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.875rem 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+  transition: all 0.18s;
+  cursor: default;
+}
+.kanji-card:hover {
+  background: var(--surface-3);
+  border-color: var(--primary);
+  box-shadow: 0 0 18px var(--primary-glow);
+  transform: translateY(-2px);
+}
+.kanji-level-badge { margin-bottom: 0.15rem; }
+.kanji-char {
+  font-size: 2.75rem;
+  line-height: 1;
+  margin: 0.1rem 0;
+}
+.kanji-meaning {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.kanji-readings {
+  font-size: 0.6rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-top: 0.1rem;
+}
+.kanji-strokes {
+  font-size: 0.6rem;
+  color: var(--text-3);
+  margin-top: 0.15rem;
+}
+
+/* JLPT level filter tabs */
+.level-tabs {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.level-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.level-tab:hover { border-color: var(--border-2); color: var(--text); }
+.level-tab-active { background: var(--primary); border-color: var(--primary); color: white; }
+.level-tab-count {
+  background: rgba(255,255,255,0.15);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  padding: 0 0.35rem;
+  line-height: 1.4;
+}
+.level-tab-active .level-tab-count { background: rgba(255,255,255,0.25); }
+
+/* JLPT level badge colours */
+.lv-n5 { background: rgba(46, 213, 115, 0.12); color: #2ed573; }
+.lv-n4 { background: rgba(0, 206, 201, 0.12);  color: #00cec9; }
+.lv-n3 { background: rgba(116, 185, 255, 0.12); color: #74b9ff; }
+.lv-n2 { background: rgba(253, 203, 110, 0.12); color: #fdcb6e; }
+.lv-n1 { background: rgba(255, 71, 87, 0.12);   color: #ff4757; }
 
 /* ── Animations ───────────────────────────────────── */
 @keyframes fade-up {

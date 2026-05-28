@@ -78,3 +78,14 @@ model UserProgress {
 
   @@unique([userId, lessonId])
 }
+
+model Kanji {
+  id          String   @id @default(cuid())
+  character   String   @unique
+  meaning     String
+  onyomi      String
+  kunyomi     String
+  strokeCount Int
+  jlptLevel   String   // "N5", "N4", "N3", "N2", "N1"
+  createdAt   DateTime @default(now())
+}

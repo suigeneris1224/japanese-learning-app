@@ -6,27 +6,41 @@ export default function HomePage() {
       <div className="container">
         <div className="hero animate">
           <div className="hero-badge">✦ Spaced Repetition Learning</div>
-          <span className="hero-kana">あいう</span>
-          <h1 className="hero-title">Master Japanese Kana</h1>
+          <span className="hero-kana">あ漢ア</span>
+          <h1 className="hero-title">Master Japanese</h1>
           <p className="hero-desc">
-            Learn hiragana and katakana with proven spaced repetition.
-            Track your progress, quiz yourself, and build a lasting habit.
+            Learn hiragana, katakana, and kanji with proven spaced repetition.
+            Track your progress and build a lasting habit.
           </p>
           <div className="hero-actions">
             <Link href="/learn" className="btn btn-primary btn-lg">
               Start Learning
             </Link>
-            <Link href="/quiz" className="btn btn-secondary btn-lg">
-              Quick Quiz
+            <Link href="/kanji" className="btn btn-secondary btn-lg">
+              Browse Kanji
             </Link>
           </div>
         </div>
 
-        <div className="feature-grid animate anim-d1">
+        {/* Featured kanji card */}
+        <Link href="/kanji" className="kanji-feature-card animate anim-d1">
+          <div className="kanji-feature-left">
+            <span className="badge lv-n5" style={{ marginBottom: "0.5rem" }}>NEW</span>
+            <div className="kanji-feature-title">Kanji Study</div>
+            <div className="kanji-feature-desc">
+              80+ N5 &amp; N4 kanji with on&rsquo;yomi, kun&rsquo;yomi, stroke counts, and JLPT levels.
+            </div>
+          </div>
+          <div className="kanji-feature-chars" aria-hidden="true">
+            山水火木
+          </div>
+        </Link>
+
+        <div className="feature-grid animate anim-d2">
           <Link href="/learn" className="feature-card">
             <div className="feature-icon fi-purple">📖</div>
-            <div className="feature-name">Learn</div>
-            <div className="feature-desc">Study kana character by character with romaji guides.</div>
+            <div className="feature-name">Learn Kana</div>
+            <div className="feature-desc">Study hiragana &amp; katakana with romaji guides.</div>
           </Link>
           <Link href="/review" className="feature-card">
             <div className="feature-icon fi-green">🔄</div>
