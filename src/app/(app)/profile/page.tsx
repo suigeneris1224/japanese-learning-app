@@ -26,7 +26,7 @@ export default async function ProfilePage() {
 
   return (
     <main className="container">
-      <h1>{user.name ?? "Learner"}'s Profile</h1>
+      <h1>{user.name ?? "Learner"}&apos;s Profile</h1>
       <div className="card">
         <p>Completion Count: {completion}</p>
         <p>Correct Answers: {totalCorrect}</p>
