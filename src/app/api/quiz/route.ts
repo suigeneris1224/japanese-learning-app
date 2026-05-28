@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { calculateNextReview } from "@/lib/review";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 const demoUserEmail = "demo@local.dev";
 
