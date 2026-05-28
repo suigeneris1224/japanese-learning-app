@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function LearnPage() {
   const lessons = await prisma.lesson.findMany({
     include: { cards: true },

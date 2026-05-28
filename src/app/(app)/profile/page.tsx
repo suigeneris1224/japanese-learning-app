@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 const demoUserEmail = "demo@local.dev";
 
 export default async function ProfilePage() {

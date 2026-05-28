@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { calculateNextReview } from "@/lib/review";
 
+export const dynamic = "force-dynamic";
+
 const demoUserEmail = "demo@local.dev";
 
 export async function POST(request: Request) {
