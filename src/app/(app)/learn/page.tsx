@@ -5,27 +5,56 @@ export const dynamic = "force-dynamic";
 export default async function LearnPage() {
   const lessons = await prisma.lesson.findMany({
     include: { cards: true },
-    orderBy: { createdAt: "asc" }
+    orderBy: { createdAt: "asc" },
   });
 
   return (
-    <main className="container">
-      <h1>Learn Kana</h1>
-      {lessons.map((lesson) => (
-        <section className="card" key={lesson.id}>
-          <h2>{lesson.title}</h2>
-          <p>{lesson.description}</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "8px" }}>
-            {lesson.cards.map((card) => (
-              <div key={card.id} className="card" style={{ marginBottom: 0 }}>
-                <strong style={{ fontSize: "1.3rem" }}>{card.kana}</strong>
-                <div>{card.romaji}</div>
-                <small>{card.meaning}</small>
-              </div>
-            ))}
+    <div className="container">
+      <div className="page-header animate">
+        <div className="row">
+          <div>
+            <h1 className="page-title">Learn Kana</h1>
+            <p className="page-sub">Tap a character to study its pronunciation.</p>
           </div>
-        </section>
-      ))}
-    </main>
+          <span className="badge badge-purple">{lessons.length} lessons</span>
+        </div>
+      </div>
+
+      {lessons.length === 0 ? (
+        <div className="empty animate">
+          <div className="empty-icon">📚</div>
+          <div className="empty-title">No lessons yet</div>
+          <p className="empty-desc">Seed your database to populate lessons.</p>
+        </div>
+      ) : (
+        lessons.map((lesson, i) => (
+          <div
+            key={lesson.id}
+            className={`lesson-card animate anim-d${Math.min(i + 1, 3) as 1 | 2 | 3}`}
+          >
+            <div className="lesson-head">
+              <div>
+                <div className="lesson-title">{lesson.title}</div>
+                <div className="lesson-desc">{lesson.description}</div>
+              </div>
+              <span className="badge badge-gray">{lesson.cards.length} cards</span>
+            </div>
+
+            <div className="kana-grid">
+              {lesson.cards.map((card) => (
+                <div className="kana-tile" key={card.id} title={card.meaning}>
+                  <span className="kana-char">{card.kana}</span>
+                  <span className="kana-rom">{card.romaji}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="prog-bar" style={{ marginTop: "0.875rem" }}>
+              <div className="prog-fill" style={{ width: "0%" }} />
+            </div>
+          </div>
+        ))
+      )}
+    </div>
   );
 }
